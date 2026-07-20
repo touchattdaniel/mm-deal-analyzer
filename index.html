@@ -95,7 +95,6 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .success h2 { font-size: 20px; font-weight: 700; color: #10b981; margin-bottom: 8px; }
 .success p { font-size: 13px; color: #64748b; line-height: 1.6; }
 
-
 .field input[type="date"] {
   color-scheme: dark;
 }
@@ -221,7 +220,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       <div class="field-grid" style="margin-top:16px;">
         <div class="field">
           <label>Loan Type Needed *</label>
-          <select id="loan_type" required onchange="toggleNewConstruction()">
+          <select id="loan_type" required onchange="toggleNewConstruction(); updateDscrBridgeFields();">
             <option value="">Select...</option>
             <option value="Fix & Flip">Fix and Flip</option>
             <option value="DSCR">DSCR (Rental)</option>
@@ -232,7 +231,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         </div>
         <div class="field">
           <label>Purchase or Refinance?</label>
-          <select id="transaction_type">
+          <select id="transaction_type" onchange="updateDscrBridgeFields();">
             <option value="">Select...</option>
             <option value="Purchase">Purchase</option>
             <option value="Refinance">Refinance</option>
@@ -262,6 +261,32 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
           </div>
         </div>
       </div>
+
+      <!-- DSCR / Bridge only -->
+      <div class="field-grid" id="dscrBridgeFields" style="margin-top:16px; display:none;">
+        <div class="field" id="payoffField" style="display:none;">
+          <label>Payoff Amount for Existing Liens</label>
+          <div class="money-input">
+            <span class="money-symbol">$</span>
+            <input type="text" id="payoff_amount" placeholder="150,000" oninput="formatMoney(this)">
+          </div>
+        </div>
+        <div class="field">
+          <label>Annual Property Taxes</label>
+          <div class="money-input">
+            <span class="money-symbol">$</span>
+            <input type="text" id="annual_taxes" placeholder="4,500" oninput="formatMoney(this)">
+          </div>
+        </div>
+        <div class="field">
+          <label>Annual Insurance</label>
+          <div class="money-input">
+            <span class="money-symbol">$</span>
+            <input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
+          </div>
+        </div>
+      </div>
+
       <div class="field-grid" style="margin-top:16px;">
         <div class="field">
           <label>Are You Under Contract?</label>
@@ -439,6 +464,18 @@ function toggleNewConstruction() {
   }
 }
 
+function updateDscrBridgeFields() {
+  const loanType = document.getElementById('loan_type').value;
+  const txnType = document.getElementById('transaction_type').value;
+  const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
+  const showPayoff = isDscrBridge && txnType === 'Refinance';
+  const wrap = document.getElementById('dscrBridgeFields');
+  const payoff = document.getElementById('payoffField');
+  wrap.style.display = isDscrBridge ? 'grid' : 'none';
+  wrap.classList.toggle('triple', showPayoff);
+  payoff.style.display = showPayoff ? 'flex' : 'none';
+}
+
 function showFileName(input) {
   const fileNameDiv = document.getElementById('fileName');
   if (input.files && input.files[0]) {
@@ -539,6 +576,9 @@ async function submitForm() {
     purchase_price: getRawMoney('purchase_price'),
     rehab_budget: getRawMoney('rehab_budget'),
     arv: getRawMoney('arv'),
+    payoff_amount: getRawMoney('payoff_amount'),
+    annual_taxes: getRawMoney('annual_taxes'),
+    annual_insurance: getRawMoney('annual_insurance'),
     under_contract: document.getElementById('under_contract').value,
     close_date: document.getElementById('close_date').value,
     experience: document.getElementById('experience').value,
@@ -579,4 +619,3 @@ async function submitForm() {
 
 </body>
 </html>
-
