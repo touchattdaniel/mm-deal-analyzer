@@ -240,7 +240,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
       </div>
       <div class="field-grid triple" style="margin-top:16px;">
         <div class="field">
-          <label>Purchase Price *</label>
+          <label>Purchase Price (As-Is Value if Already Owned) *</label>
           <div class="money-input">
             <span class="money-symbol">$</span>
             <input type="text" id="purchase_price" placeholder="250,000" required oninput="formatMoney(this)">
@@ -379,6 +379,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
             <option value="No">No</option>
             <option value="Yes">Yes</option>
             <option value="Prefer to discuss">Prefer to discuss</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Citizenship Status</label>
+          <select id="citizenship_status">
+            <option value="">Select...</option>
+            <option value="US Citizen">US Citizen</option>
+            <option value="Foreign National">Foreign National</option>
+            <option value="Non-Citizen">Non-Citizen</option>
           </select>
         </div>
       </div>
@@ -587,6 +596,7 @@ async function submitForm() {
     entity_type: document.getElementById('entity_type').value,
     owns_primary: document.getElementById('owns_primary').value,
     derogatory: document.getElementById('derogatory').value,
+    citizenship_status: document.getElementById('citizenship_status').value,
     construction_experience: document.getElementById('construction_experience').value,
     message: document.getElementById('message').value,
     consent: true,
