@@ -27,19 +27,19 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: 12px; font-weight: 500; color: #aebccb; line-height: 1.4; }
 .field input, .field select, .field textarea {
-  background: #0a1018;
-  border: 0.5px solid rgba(255,255,255,.12);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 13px;
-  color: #f1f5f9;
-  font-family: inherit;
-  transition: border-color 0.2s;
-  width: 100%;
+background: #0a1018;
+border: 0.5px solid rgba(255,255,255,.12);
+border-radius: 8px;
+padding: 10px 12px;
+font-size: 13px;
+color: #f1f5f9;
+font-family: inherit;
+transition: border-color 0.2s;
+width: 100%;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
-  outline: none;
-  border-color: #1B93A6;
+outline: none;
+border-color: #1B93A6;
 }
 .field select option { background: #0a1018; }
 .field textarea { resize: vertical; min-height: 80px; }
@@ -50,13 +50,13 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .money-symbol { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #7c8a99; font-size: 13px; pointer-events: none; }
 
 .upload-area {
-  background: #0a1018;
-  border: 1px dashed rgba(255,255,255,.14);
-  border-radius: 8px;
-  padding: 16px;
-  text-align: center;
-  cursor: pointer;
-  transition: border-color 0.2s;
+background: #0a1018;
+border: 1px dashed rgba(255,255,255,.14);
+border-radius: 8px;
+padding: 16px;
+text-align: center;
+cursor: pointer;
+transition: border-color 0.2s;
 }
 .upload-area:hover { border-color: #1B93A6; }
 .upload-area input[type="file"] { display: none; }
@@ -73,18 +73,18 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 
 .submit-section { text-align: center; margin-top: 24px; }
 .submit-btn {
-  background: #1B93A6;
-  border: none;
-  border-radius: 10px;
-  padding: 16px 48px;
-  font-size: 15px;
-  font-weight: 700;
-  font-family: 'DM Sans', sans-serif;
-  color: #fff;
-  cursor: pointer;
-  width: 100%;
-  max-width: 400px;
-  transition: background 0.2s, transform 0.15s;
+background: #1B93A6;
+border: none;
+border-radius: 10px;
+padding: 16px 48px;
+font-size: 15px;
+font-weight: 700;
+font-family: 'DM Sans', sans-serif;
+color: #fff;
+cursor: pointer;
+width: 100%;
+max-width: 400px;
+transition: background 0.2s, transform 0.15s;
 }
 .submit-btn:hover { background: #12798a; transform: translateY(-1px); }
 .submit-btn:disabled { background: rgba(255,255,255,.12); color: #7c8a99; cursor: not-allowed; transform: none; }
@@ -99,12 +99,12 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .success p { font-size: 13px; color: #8ea3ad; line-height: 1.6; }
 
 .field input[type="date"] {
-  color-scheme: dark;
+color-scheme: dark;
 }
 
 @media (max-width: 600px) {
-  .field-grid { grid-template-columns: 1fr; }
-  .field-grid.triple { grid-template-columns: 1fr; }
+.field-grid { grid-template-columns: 1fr; }
+.field-grid.triple { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -112,333 +112,337 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 
 <div class="container">
 
-  <div class="header">
-    <div class="logo">Maple &amp; Millwood Consultants</div>
-    <h1>Apply for Financing</h1>
-    <p>Complete this form and we will review your deal and reach out within a few hours. We close in 10 days.</p>
-  </div>
+<div class="header">
+<div class="logo">Maple &amp; Millwood Consultants</div>
+<h1>Apply for Financing</h1>
+<p>Complete this form and we will review your deal and reach out within a few hours. We close in 10 days.</p>
+</div>
 
-  <form id="leadForm">
+<form id="leadForm">
 
-    <!-- Section 1: Contact -->
-    <div class="section">
-      <div class="section-title">Contact Information</div>
-      <div class="field-grid">
-        <div class="field">
-          <label>Full Name *</label>
-          <input type="text" id="name" placeholder="John Smith" required>
-        </div>
-        <div class="field">
-          <label>Email Address *</label>
-          <input type="email" id="email" placeholder="john@email.com" required>
-        </div>
-        <div class="field">
-          <label>Phone Number *</label>
-          <input type="tel" id="phone" placeholder="(555) 123-4567" required>
-        </div>
-      </div>
-    </div>
+<!-- Section 1: Contact -->
+<div class="section">
+<div class="section-title">Contact Information</div>
+<div class="field-grid">
+<div class="field">
+<label>Full Name *</label>
+<input type="text" id="name" placeholder="John Smith" required>
+</div>
+<div class="field">
+<label>Email Address *</label>
+<input type="email" id="email" placeholder="john@email.com" required>
+</div>
+<div class="field">
+<label>Phone Number *</label>
+<input type="tel" id="phone" placeholder="(555) 123-4567" required>
+</div>
+</div>
+</div>
 
-    <!-- Section 2: The Deal -->
-    <div class="section">
-      <div class="section-title">The Deal</div>
-      <div class="field-grid single">
-        <div class="field">
-          <label>Property Address *</label>
-          <input type="text" id="property_address" placeholder="123 Main St, City, State 12345" required>
-        </div>
-      </div>
-      <div class="field-grid" style="margin-top:16px;">
-        <div class="field">
-          <label>Property Type *</label>
-          <select id="property_type" required>
-            <option value="">Select...</option>
-            <option value="Single Family">Single Family</option>
-            <option value="Multi-Family (2-4 units)">Multi-Family (2-4 units)</option>
-            <option value="Multi-Family (5+ units)">Multi-Family (5+ units)</option>
-            <option value="Condo/Townhome">Condo/Townhome</option>
-            <option value="Mixed-Use">Mixed-Use</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Land">Land</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Property State *</label>
-          <select id="property_state" required>
-            <option value="">Select...</option>
-            <option value="Alabama">Alabama</option>
-            <option value="Alaska">Alaska</option>
-            <option value="Arizona">Arizona</option>
-            <option value="Arkansas">Arkansas</option>
-            <option value="California">California</option>
-            <option value="Colorado">Colorado</option>
-            <option value="Connecticut">Connecticut</option>
-            <option value="Delaware">Delaware</option>
-            <option value="District of Columbia">District of Columbia</option>
-            <option value="Florida">Florida</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Hawaii">Hawaii</option>
-            <option value="Idaho">Idaho</option>
-            <option value="Illinois">Illinois</option>
-            <option value="Indiana">Indiana</option>
-            <option value="Iowa">Iowa</option>
-            <option value="Kansas">Kansas</option>
-            <option value="Kentucky">Kentucky</option>
-            <option value="Louisiana">Louisiana</option>
-            <option value="Maine">Maine</option>
-            <option value="Maryland">Maryland</option>
-            <option value="Massachusetts">Massachusetts</option>
-            <option value="Michigan">Michigan</option>
-            <option value="Minnesota">Minnesota</option>
-            <option value="Mississippi">Mississippi</option>
-            <option value="Missouri">Missouri</option>
-            <option value="Montana">Montana</option>
-            <option value="Nebraska">Nebraska</option>
-            <option value="Nevada">Nevada</option>
-            <option value="New Hampshire">New Hampshire</option>
-            <option value="New Jersey">New Jersey</option>
-            <option value="New Mexico">New Mexico</option>
-            <option value="New York">New York</option>
-            <option value="North Carolina">North Carolina</option>
-            <option value="North Dakota">North Dakota</option>
-            <option value="Ohio">Ohio</option>
-            <option value="Oklahoma">Oklahoma</option>
-            <option value="Oregon">Oregon</option>
-            <option value="Pennsylvania">Pennsylvania</option>
-            <option value="Rhode Island">Rhode Island</option>
-            <option value="South Carolina">South Carolina</option>
-            <option value="South Dakota">South Dakota</option>
-            <option value="Tennessee">Tennessee</option>
-            <option value="Texas">Texas</option>
-            <option value="Utah">Utah</option>
-            <option value="Vermont">Vermont</option>
-            <option value="Virginia">Virginia</option>
-            <option value="Washington">Washington</option>
-            <option value="West Virginia">West Virginia</option>
-            <option value="Wisconsin">Wisconsin</option>
-            <option value="Wyoming">Wyoming</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-grid" style="margin-top:16px;">
-        <div class="field">
-          <label>Loan Type Needed *</label>
-          <select id="loan_type" required onchange="toggleNewConstruction(); updateDscrBridgeFields();">
-            <option value="">Select...</option>
-            <option value="Fix & Flip">Fix and Flip</option>
-            <option value="DSCR">DSCR (Rental)</option>
-            <option value="Bridge">Bridge Loan</option>
-            <option value="New Construction">New Construction</option>
-            <option value="Not Sure">Not Sure</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Purchase or Refinance?</label>
-          <select id="transaction_type" onchange="updateDscrBridgeFields();">
-            <option value="">Select...</option>
-            <option value="Purchase">Purchase</option>
-            <option value="Refinance">Refinance</option>
-          </select>
-        </div>
-      </div>
-      <div class="field-grid triple" style="margin-top:16px;">
-        <div class="field">
-          <label>Purchase Price (As-Is Value if Already Owned) *</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="purchase_price" placeholder="250,000" required oninput="formatMoney(this)">
-          </div>
-        </div>
-        <div class="field">
-          <label>Rehab Budget</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="rehab_budget" placeholder="50,000" oninput="formatMoney(this)">
-          </div>
-        </div>
-        <div class="field">
-          <label>After Repair Value (ARV)</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="arv" placeholder="400,000" oninput="formatMoney(this)">
-          </div>
-        </div>
-      </div>
+<!-- Section 2: The Deal -->
+<div class="section">
+<div class="section-title">The Deal</div>
+<div class="field-grid single">
+<div class="field">
+<label>Property Address *</label>
+<input type="text" id="property_address" placeholder="123 Main St, City, State 12345" required>
+</div>
+</div>
+<div class="field-grid triple" style="margin-top:16px;">
+<div class="field">
+<label>Property Type *</label>
+<select id="property_type" required>
+<option value="">Select...</option>
+<option value="Single Family">Single Family</option>
+<option value="Multi-Family (2-4 units)">Multi-Family (2-4 units)</option>
+<option value="Multi-Family (5+ units)">Multi-Family (5+ units)</option>
+<option value="Condo/Townhome">Condo/Townhome</option>
+<option value="Mixed-Use">Mixed-Use</option>
+<option value="Commercial">Commercial</option>
+<option value="Land">Land</option>
+</select>
+</div>
+<div class="field">
+<label>Property State *</label>
+<select id="property_state" required>
+<option value="">Select...</option>
+<option value="Alabama">Alabama</option>
+<option value="Alaska">Alaska</option>
+<option value="Arizona">Arizona</option>
+<option value="Arkansas">Arkansas</option>
+<option value="California">California</option>
+<option value="Colorado">Colorado</option>
+<option value="Connecticut">Connecticut</option>
+<option value="Delaware">Delaware</option>
+<option value="District of Columbia">District of Columbia</option>
+<option value="Florida">Florida</option>
+<option value="Georgia">Georgia</option>
+<option value="Hawaii">Hawaii</option>
+<option value="Idaho">Idaho</option>
+<option value="Illinois">Illinois</option>
+<option value="Indiana">Indiana</option>
+<option value="Iowa">Iowa</option>
+<option value="Kansas">Kansas</option>
+<option value="Kentucky">Kentucky</option>
+<option value="Louisiana">Louisiana</option>
+<option value="Maine">Maine</option>
+<option value="Maryland">Maryland</option>
+<option value="Massachusetts">Massachusetts</option>
+<option value="Michigan">Michigan</option>
+<option value="Minnesota">Minnesota</option>
+<option value="Mississippi">Mississippi</option>
+<option value="Missouri">Missouri</option>
+<option value="Montana">Montana</option>
+<option value="Nebraska">Nebraska</option>
+<option value="Nevada">Nevada</option>
+<option value="New Hampshire">New Hampshire</option>
+<option value="New Jersey">New Jersey</option>
+<option value="New Mexico">New Mexico</option>
+<option value="New York">New York</option>
+<option value="North Carolina">North Carolina</option>
+<option value="North Dakota">North Dakota</option>
+<option value="Ohio">Ohio</option>
+<option value="Oklahoma">Oklahoma</option>
+<option value="Oregon">Oregon</option>
+<option value="Pennsylvania">Pennsylvania</option>
+<option value="Rhode Island">Rhode Island</option>
+<option value="South Carolina">South Carolina</option>
+<option value="South Dakota">South Dakota</option>
+<option value="Tennessee">Tennessee</option>
+<option value="Texas">Texas</option>
+<option value="Utah">Utah</option>
+<option value="Vermont">Vermont</option>
+<option value="Virginia">Virginia</option>
+<option value="Washington">Washington</option>
+<option value="West Virginia">West Virginia</option>
+<option value="Wisconsin">Wisconsin</option>
+<option value="Wyoming">Wyoming</option>
+</select>
+</div>
+<div class="field">
+<label>Zip Code *</label>
+<input type="text" id="zip_code" placeholder="12345" inputmode="numeric" maxlength="10" required>
+</div>
+</div>
+<div class="field-grid" style="margin-top:16px;">
+<div class="field">
+<label>Loan Type Needed *</label>
+<select id="loan_type" required onchange="toggleNewConstruction(); updateDscrBridgeFields();">
+<option value="">Select...</option>
+<option value="Fix & Flip">Fix and Flip</option>
+<option value="DSCR">DSCR (Rental)</option>
+<option value="Bridge">Bridge Loan</option>
+<option value="New Construction">New Construction</option>
+<option value="Not Sure">Not Sure</option>
+</select>
+</div>
+<div class="field">
+<label>Purchase or Refinance?</label>
+<select id="transaction_type" onchange="updateDscrBridgeFields();">
+<option value="">Select...</option>
+<option value="Purchase">Purchase</option>
+<option value="Refinance">Refinance</option>
+</select>
+</div>
+</div>
+<div class="field-grid triple" style="margin-top:16px;">
+<div class="field">
+<label>Purchase Price (As-Is Value if Already Owned) *</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="purchase_price" placeholder="250,000" required oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>Rehab Budget</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="rehab_budget" placeholder="50,000" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>After Repair Value (ARV)</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="arv" placeholder="400,000" oninput="formatMoney(this)">
+</div>
+</div>
+</div>
 
-      <!-- DSCR / Bridge only -->
-      <div class="field-grid" id="dscrBridgeFields" style="margin-top:16px; display:none;">
-        <div class="field" id="payoffField" style="display:none;">
-          <label>Payoff Amount for Existing Liens</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="payoff_amount" placeholder="150,000" oninput="formatMoney(this)">
-          </div>
-        </div>
-        <div class="field">
-          <label>Annual Property Taxes</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="annual_taxes" placeholder="4,500" oninput="formatMoney(this)">
-          </div>
-        </div>
-        <div class="field">
-          <label>Annual Insurance</label>
-          <div class="money-input">
-            <span class="money-symbol">$</span>
-            <input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
-          </div>
-        </div>
-      </div>
+<!-- DSCR / Bridge only -->
+<div class="field-grid" id="dscrBridgeFields" style="margin-top:16px; display:none;">
+<div class="field" id="payoffField" style="display:none;">
+<label>Payoff Amount for Existing Liens</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="payoff_amount" placeholder="150,000" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>Annual Property Taxes</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="annual_taxes" placeholder="4,500" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>Annual Insurance</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
+</div>
+</div>
+</div>
 
-      <div class="field-grid" style="margin-top:16px;">
-        <div class="field">
-          <label>Are You Under Contract?</label>
-          <select id="under_contract" onchange="toggleUpload()">
-            <option value="">Select...</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-            <option value="LOI">LOI submitted</option>
-            <option value="Already Own Property">Already own the property</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Required Close Date</label>
-          <input type="date" id="close_date" min="">
-        </div>
-      </div>
-      <div class="field-grid single conditional-field" id="uploadField" style="margin-top:16px;">
-        <div class="field">
-          <label>Upload Your Contract (optional)</label>
-          <div class="upload-area" onclick="document.getElementById('contractFile').click()">
-            <input type="file" id="contractFile" accept=".pdf,.doc,.docx" onchange="showFileName(this)">
-            <label class="upload-label"><span>Click to upload</span> or drag and drop — PDF, DOC, DOCX (max 5MB)</label>
-            <div class="file-name" id="fileName"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="field-grid" style="margin-top:16px;">
+<div class="field">
+<label>Are You Under Contract?</label>
+<select id="under_contract" onchange="toggleUpload()">
+<option value="">Select...</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+<option value="LOI">LOI submitted</option>
+<option value="Already Own Property">Already own the property</option>
+</select>
+</div>
+<div class="field">
+<label>Required Close Date</label>
+<input type="date" id="close_date" min="">
+</div>
+</div>
+<div class="field-grid single conditional-field" id="uploadField" style="margin-top:16px;">
+<div class="field">
+<label>Upload Your Contract (optional)</label>
+<div class="upload-area" onclick="document.getElementById('contractFile').click()">
+<input type="file" id="contractFile" accept=".pdf,.doc,.docx" onchange="showFileName(this)">
+<label class="upload-label"><span>Click to upload</span> or drag and drop — PDF, DOC, DOCX (max 5MB)</label>
+<div class="file-name" id="fileName"></div>
+</div>
+</div>
+</div>
+</div>
 
-    <!-- Section 3: Borrower Profile -->
-    <div class="section">
-      <div class="section-title">Your Profile</div>
-      <div class="field-grid">
-        <div class="field">
-          <label>Investment Properties Completed (Last 3 Years)</label>
-          <select id="experience">
-            <option value="">Select...</option>
-            <option value="0 — First deal">0 — First deal</option>
-            <option value="1-2 deals">1-2 deals</option>
-            <option value="3-5 deals">3-5 deals</option>
-            <option value="6-10 deals">6-10 deals</option>
-            <option value="10+ deals">10+ deals</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Estimated Credit Score</label>
-          <select id="credit_score">
-            <option value="">Select...</option>
-            <option value="Below 640">Below 640</option>
-            <option value="640-679">640-679</option>
-            <option value="680-699">680-699</option>
-            <option value="700-719">700-719</option>
-            <option value="720-739">720-739</option>
-            <option value="740+">740+</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Liquid Funds Available</label>
-          <select id="liquid_funds">
-            <option value="">Select...</option>
-            <option value="Under $10,000">Under $10,000</option>
-            <option value="$25,000-$50,000">$25,000-$50,000</option>
-            <option value="$50,000-$100,000">$50,000-$100,000</option>
-            <option value="$100,000-$250,000">$100,000-$250,000</option>
-            <option value="$250,000+">$250,000+</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Entity Type</label>
-          <select id="entity_type">
-            <option value="">Select...</option>
-            <option value="LLC">LLC</option>
-            <option value="Corporation">Corporation</option>
-            <option value="Individual">Individual</option>
-            <option value="Trust">Trust</option>
-            <option value="Not yet formed">Not yet formed</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Do You Own Your Primary Residence?</label>
-          <select id="owns_primary">
-            <option value="">Select...</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Any bankruptcies, foreclosures, tax liens, or child support issues in the last 36 months?</label>
-          <select id="derogatory">
-            <option value="">Select...</option>
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-            <option value="Prefer to discuss">Prefer to discuss</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Citizenship Status</label>
-          <select id="citizenship_status">
-            <option value="">Select...</option>
-            <option value="US Citizen">US Citizen</option>
-            <option value="Foreign National">Foreign National</option>
-            <option value="Non-Citizen">Non-Citizen</option>
-          </select>
-        </div>
-      </div>
+<!-- Section 3: Borrower Profile -->
+<div class="section">
+<div class="section-title">Your Profile</div>
+<div class="field-grid">
+<div class="field">
+<label>Investment Properties Completed (Last 3 Years)</label>
+<select id="experience">
+<option value="">Select...</option>
+<option value="0 — First deal">0 — First deal</option>
+<option value="1-2 deals">1-2 deals</option>
+<option value="3-5 deals">3-5 deals</option>
+<option value="6-10 deals">6-10 deals</option>
+<option value="10+ deals">10+ deals</option>
+</select>
+</div>
+<div class="field">
+<label>Estimated Credit Score</label>
+<select id="credit_score">
+<option value="">Select...</option>
+<option value="Below 640">Below 640</option>
+<option value="640-679">640-679</option>
+<option value="680-699">680-699</option>
+<option value="700-719">700-719</option>
+<option value="720-739">720-739</option>
+<option value="740+">740+</option>
+</select>
+</div>
+<div class="field">
+<label>Liquid Funds Available</label>
+<select id="liquid_funds">
+<option value="">Select...</option>
+<option value="Under $10,000">Under $10,000</option>
+<option value="$25,000-$50,000">$25,000-$50,000</option>
+<option value="$50,000-$100,000">$50,000-$100,000</option>
+<option value="$100,000-$250,000">$100,000-$250,000</option>
+<option value="$250,000+">$250,000+</option>
+</select>
+</div>
+<div class="field">
+<label>Entity Type</label>
+<select id="entity_type">
+<option value="">Select...</option>
+<option value="LLC">LLC</option>
+<option value="Corporation">Corporation</option>
+<option value="Individual">Individual</option>
+<option value="Trust">Trust</option>
+<option value="Not yet formed">Not yet formed</option>
+</select>
+</div>
+<div class="field">
+<label>Do You Own Your Primary Residence?</label>
+<select id="owns_primary">
+<option value="">Select...</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div class="field">
+<label>Any bankruptcies, foreclosures, tax liens, or child support issues in the last 36 months?</label>
+<select id="derogatory">
+<option value="">Select...</option>
+<option value="No">No</option>
+<option value="Yes">Yes</option>
+<option value="Prefer to discuss">Prefer to discuss</option>
+</select>
+</div>
+<div class="field">
+<label>Citizenship Status</label>
+<select id="citizenship_status">
+<option value="">Select...</option>
+<option value="US Citizen">US Citizen</option>
+<option value="Foreign National">Foreign National</option>
+<option value="Non-Citizen">Non-Citizen</option>
+</select>
+</div>
+</div>
 
-      <!-- New Construction Only -->
-      <div class="field-grid single conditional-field" id="newConstructionField" style="margin-top:16px;">
-        <div class="field">
-          <label>New Construction Only — How many successful ground-up projects have you completed in the last 48 months?</label>
-          <select id="construction_experience">
-            <option value="">Select...</option>
-            <option value="0 — First project">0 — First project</option>
-            <option value="1-2 projects">1-2 projects</option>
-            <option value="3-5 projects">3-5 projects</option>
-            <option value="6-10 projects">6-10 projects</option>
-            <option value="10+ projects">10+ projects</option>
-          </select>
-        </div>
-      </div>
-    </div>
+<!-- New Construction Only -->
+<div class="field-grid single conditional-field" id="newConstructionField" style="margin-top:16px;">
+<div class="field">
+<label>New Construction Only — How many successful ground-up projects have you completed in the last 48 months?</label>
+<select id="construction_experience">
+<option value="">Select...</option>
+<option value="0 — First project">0 — First project</option>
+<option value="1-2 projects">1-2 projects</option>
+<option value="3-5 projects">3-5 projects</option>
+<option value="6-10 projects">6-10 projects</option>
+<option value="10+ projects">10+ projects</option>
+</select>
+</div>
+</div>
+</div>
 
-    <!-- Section 4: Additional Info -->
-    <div class="section">
-      <div class="section-title">Additional Details</div>
-      <div class="field-grid single">
-        <div class="field">
-          <label>Tell us about the deal — property condition, exit strategy, anything else we should know</label>
-          <textarea id="message" placeholder="Example: 3bed/2bath single family in Cleveland. Needs full kitchen and bath remodel. Buying below market from motivated seller. Plan to flip within 4 months."></textarea>
-        </div>
-      </div>
-      <div class="consent-row">
-        <input type="checkbox" id="consent" required>
-        <label for="consent">I agree to be contacted by call, text, or email by Maple &amp; Millwood Consultants regarding my loan inquiry. *</label>
-      </div>
-    </div>
+<!-- Section 4: Additional Info -->
+<div class="section">
+<div class="section-title">Additional Details</div>
+<div class="field-grid single">
+<div class="field">
+<label>Tell us about the deal — property condition, exit strategy, anything else we should know</label>
+<textarea id="message" placeholder="Example: 3bed/2bath single family in Cleveland. Needs full kitchen and bath remodel. Buying below market from motivated seller. Plan to flip within 4 months."></textarea>
+</div>
+</div>
+<div class="consent-row">
+<input type="checkbox" id="consent" required>
+<label for="consent">I agree to be contacted by call, text, or email by Maple &amp; Millwood Consultants regarding my loan inquiry. *</label>
+</div>
+</div>
 
-    <div class="submit-section">
-      <button type="button" class="submit-btn" id="submitBtn" onclick="submitForm()">Submit My Deal</button>
-      <p class="disclaimer">We typically respond within a few hours during business days. Your information is kept strictly confidential.</p>
-      <div class="error-banner" id="errorBanner"></div>
-    </div>
+<div class="submit-section">
+<button type="button" class="submit-btn" id="submitBtn" onclick="submitForm()">Submit My Deal</button>
+<p class="disclaimer">We typically respond within a few hours during business days. Your information is kept strictly confidential.</p>
+<div class="error-banner" id="errorBanner"></div>
+</div>
 
-  </form>
+</form>
 
-  <div class="success" id="successMsg">
-    <div class="success-icon">&#10003;</div>
-    <h2>We have your deal.</h2>
-    <p>Someone from Maple &amp; Millwood Consultants will review your submission and reach out within a few hours. We close in 10 days — let us get to work.</p>
-  </div>
+<div class="success" id="successMsg">
+<div class="success-icon">&#10003;</div>
+<h2>We have your deal.</h2>
+<p>Someone from Maple &amp; Millwood Consultants will review your submission and reach out within a few hours. We close in 10 days — let us get to work.</p>
+</div>
 
 </div>
 
@@ -446,187 +450,193 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 document.getElementById('close_date').min = new Date().toISOString().split('T')[0];
 
 function formatMoney(input) {
-  let value = input.value.replace(/[^0-9]/g, '');
-  if (value === '') { input.value = ''; return; }
-  input.value = parseInt(value).toLocaleString();
+let value = input.value.replace(/[^0-9]/g, '');
+if (value === '') { input.value = ''; return; }
+input.value = parseInt(value).toLocaleString();
 }
 
 function getRawMoney(id) {
-  const val = document.getElementById(id).value.replace(/[^0-9]/g, '');
-  return val ? parseInt(val) : 0;
+const val = document.getElementById(id).value.replace(/[^0-9]/g, '');
+return val ? parseInt(val) : 0;
 }
 
 function toggleUpload() {
-  const val = document.getElementById('under_contract').value;
-  const uploadField = document.getElementById('uploadField');
-  if (val === 'Yes' || val === 'LOI') {
-    uploadField.classList.add('show');
-  } else {
-    uploadField.classList.remove('show');
-  }
+const val = document.getElementById('under_contract').value;
+const uploadField = document.getElementById('uploadField');
+if (val === 'Yes' || val === 'LOI') {
+uploadField.classList.add('show');
+} else {
+uploadField.classList.remove('show');
+}
 }
 
 function toggleNewConstruction() {
-  const val = document.getElementById('loan_type').value;
-  const ncField = document.getElementById('newConstructionField');
-  if (val === 'New Construction') {
-    ncField.classList.add('show');
-  } else {
-    ncField.classList.remove('show');
-  }
+const val = document.getElementById('loan_type').value;
+const ncField = document.getElementById('newConstructionField');
+if (val === 'New Construction') {
+ncField.classList.add('show');
+} else {
+ncField.classList.remove('show');
+}
 }
 
 function updateDscrBridgeFields() {
-  const loanType = document.getElementById('loan_type').value;
-  const txnType = document.getElementById('transaction_type').value;
-  const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
-  const showPayoff = isDscrBridge && txnType === 'Refinance';
-  const wrap = document.getElementById('dscrBridgeFields');
-  const payoff = document.getElementById('payoffField');
-  wrap.style.display = isDscrBridge ? 'grid' : 'none';
-  wrap.classList.toggle('triple', showPayoff);
-  payoff.style.display = showPayoff ? 'flex' : 'none';
+const loanType = document.getElementById('loan_type').value;
+const txnType = document.getElementById('transaction_type').value;
+const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
+const showPayoff = isDscrBridge && txnType === 'Refinance';
+const wrap = document.getElementById('dscrBridgeFields');
+const payoff = document.getElementById('payoffField');
+wrap.style.display = isDscrBridge ? 'grid' : 'none';
+wrap.classList.toggle('triple', showPayoff);
+payoff.style.display = showPayoff ? 'flex' : 'none';
 }
 
 function showFileName(input) {
-  const fileNameDiv = document.getElementById('fileName');
-  if (input.files && input.files[0]) {
-    fileNameDiv.textContent = input.files[0].name;
-    fileNameDiv.style.display = 'block';
-  }
+const fileNameDiv = document.getElementById('fileName');
+if (input.files && input.files[0]) {
+fileNameDiv.textContent = input.files[0].name;
+fileNameDiv.style.display = 'block';
+}
 }
 
 function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
-    reader.onerror = () => reject(new Error('Could not read file'));
-    reader.readAsDataURL(file);
-  });
+return new Promise((resolve, reject) => {
+const reader = new FileReader();
+reader.onload = () => resolve(String(reader.result).split(',')[1] || '');
+reader.onerror = () => reject(new Error('Could not read file'));
+reader.readAsDataURL(file);
+});
 }
 
 function showError(msg) {
-  const banner = document.getElementById('errorBanner');
-  banner.textContent = msg;
-  banner.style.display = 'block';
+const banner = document.getElementById('errorBanner');
+banner.textContent = msg;
+banner.style.display = 'block';
 }
 
 function hideError() {
-  const banner = document.getElementById('errorBanner');
-  banner.style.display = 'none';
+const banner = document.getElementById('errorBanner');
+banner.style.display = 'none';
 }
 
 async function submitForm() {
-  hideError();
+hideError();
 
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
+const name = document.getElementById('name').value.trim();
+const email = document.getElementById('email').value.trim();
+const phone = document.getElementById('phone').value.trim();
 
-  if (!name || !email || !phone) {
-    alert('Please fill in your name, email, and phone number.');
-    return;
-  }
+if (!name || !email || !phone) {
+alert('Please fill in your name, email, and phone number.');
+return;
+}
 
-  if (!document.getElementById('purchase_price').value) {
-    alert('Please enter the purchase price.');
-    return;
-  }
+if (!document.getElementById('purchase_price').value) {
+alert('Please enter the purchase price.');
+return;
+}
 
-  if (!document.getElementById('property_type').value) {
-    alert('Please select the property type.');
-    return;
-  }
+if (!document.getElementById('property_type').value) {
+alert('Please select the property type.');
+return;
+}
 
-  if (!document.getElementById('property_state').value) {
-    alert('Please select the property state.');
-    return;
-  }
+if (!document.getElementById('property_state').value) {
+alert('Please select the property state.');
+return;
+}
 
-  if (!document.getElementById('consent').checked) {
-    alert('Please confirm you agree to be contacted about your loan inquiry.');
-    return;
-  }
+if (!document.getElementById('zip_code').value.trim()) {
+alert('Please enter the property zip code.');
+return;
+}
 
-  const btn = document.getElementById('submitBtn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
+if (!document.getElementById('consent').checked) {
+alert('Please confirm you agree to be contacted about your loan inquiry.');
+return;
+}
 
-  const submission_id = 'sub_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
+const btn = document.getElementById('submitBtn');
+btn.disabled = true;
+btn.textContent = 'Submitting...';
 
-  let contract_file_name = '';
-  let contract_file_base64 = '';
-  const fileInput = document.getElementById('contractFile');
-  if (fileInput.files && fileInput.files[0]) {
-    const file = fileInput.files[0];
-    if (file.size > 5 * 1024 * 1024) {
-      btn.disabled = false;
-      btn.textContent = 'Submit My Deal';
-      showError('That file is larger than 5MB. Please upload a smaller file, or leave it out and email it to us after submitting.');
-      return;
-    }
-    try {
-      contract_file_name = file.name;
-      contract_file_base64 = await fileToBase64(file);
-    } catch (e) {
-      // If the file can't be read, continue without it rather than blocking submission.
-      contract_file_name = '';
-      contract_file_base64 = '';
-    }
-  }
+const submission_id = 'sub_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10);
 
-  const payload = {
-    submission_id: submission_id,
-    name: name,
-    email: email,
-    phone: phone,
-    property_address: document.getElementById('property_address').value,
-    property_type: document.getElementById('property_type').value,
-    state: document.getElementById('property_state').value,
-    loan_type: document.getElementById('loan_type').value,
-    transaction_type: document.getElementById('transaction_type').value,
-    purchase_price: getRawMoney('purchase_price'),
-    rehab_budget: getRawMoney('rehab_budget'),
-    arv: getRawMoney('arv'),
-    payoff_amount: getRawMoney('payoff_amount'),
-    annual_taxes: getRawMoney('annual_taxes'),
-    annual_insurance: getRawMoney('annual_insurance'),
-    under_contract: document.getElementById('under_contract').value,
-    close_date: document.getElementById('close_date').value,
-    experience: document.getElementById('experience').value,
-    credit_score: document.getElementById('credit_score').value,
-    liquid_funds: document.getElementById('liquid_funds').value,
-    entity_type: document.getElementById('entity_type').value,
-    owns_primary: document.getElementById('owns_primary').value,
-    derogatory: document.getElementById('derogatory').value,
-    citizenship_status: document.getElementById('citizenship_status').value,
-    construction_experience: document.getElementById('construction_experience').value,
-    message: document.getElementById('message').value,
-    consent: true,
-    consent_timestamp: new Date().toISOString(),
-    contract_file_name: contract_file_name,
-    contract_file_base64: contract_file_base64
-  };
+let contract_file_name = '';
+let contract_file_base64 = '';
+const fileInput = document.getElementById('contractFile');
+if (fileInput.files && fileInput.files[0]) {
+const file = fileInput.files[0];
+if (file.size > 5 * 1024 * 1024) {
+btn.disabled = false;
+btn.textContent = 'Submit My Deal';
+showError('That file is larger than 5MB. Please upload a smaller file, or leave it out and email it to us after submitting.');
+return;
+}
+try {
+contract_file_name = file.name;
+contract_file_base64 = await fileToBase64(file);
+} catch (e) {
+// If the file can't be read, continue without it rather than blocking submission.
+contract_file_name = '';
+contract_file_base64 = '';
+}
+}
 
-  try {
-    const resp = await fetch('https://n8n-production-11c3.up.railway.app/webhook/mm-inbound-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
+const payload = {
+submission_id: submission_id,
+name: name,
+email: email,
+phone: phone,
+property_address: document.getElementById('property_address').value,
+property_type: document.getElementById('property_type').value,
+state: document.getElementById('property_state').value,
+zip_code: document.getElementById('zip_code').value.trim(),
+loan_type: document.getElementById('loan_type').value,
+transaction_type: document.getElementById('transaction_type').value,
+purchase_price: getRawMoney('purchase_price'),
+rehab_budget: getRawMoney('rehab_budget'),
+arv: getRawMoney('arv'),
+payoff_amount: getRawMoney('payoff_amount'),
+annual_taxes: getRawMoney('annual_taxes'),
+annual_insurance: getRawMoney('annual_insurance'),
+under_contract: document.getElementById('under_contract').value,
+close_date: document.getElementById('close_date').value,
+experience: document.getElementById('experience').value,
+credit_score: document.getElementById('credit_score').value,
+liquid_funds: document.getElementById('liquid_funds').value,
+entity_type: document.getElementById('entity_type').value,
+owns_primary: document.getElementById('owns_primary').value,
+derogatory: document.getElementById('derogatory').value,
+citizenship_status: document.getElementById('citizenship_status').value,
+construction_experience: document.getElementById('construction_experience').value,
+message: document.getElementById('message').value,
+consent: true,
+consent_timestamp: new Date().toISOString(),
+contract_file_name: contract_file_name,
+contract_file_base64: contract_file_base64
+};
 
-    if (!resp.ok) {
-      throw new Error('Webhook responded with status ' + resp.status);
-    }
+try {
+const resp = await fetch('https://n8n-production-11c3.up.railway.app/webhook/mm-inbound-lead', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(payload)
+});
 
-    document.getElementById('leadForm').style.display = 'none';
-    document.getElementById('successMsg').style.display = 'block';
-    document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
-  } catch (e) {
-    btn.disabled = false;
-    btn.textContent = 'Submit My Deal';
-    showError('Something went wrong submitting your deal — please try again in a moment. If it keeps happening, email us directly at daniel@mapleandmillwood.com and we will get your deal started right away.');
-  }
+if (!resp.ok) {
+throw new Error('Webhook responded with status ' + resp.status);
+}
+
+document.getElementById('leadForm').style.display = 'none';
+document.getElementById('successMsg').style.display = 'block';
+document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });
+} catch (e) {
+btn.disabled = false;
+btn.textContent = 'Submit My Deal';
+showError('Something went wrong submitting your deal — please try again in a moment. If it keeps happening, email us directly at daniel@mapleandmillwood.com and we will get your deal started right away.');
+}
 }
 </script>
 
