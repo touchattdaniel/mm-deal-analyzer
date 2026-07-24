@@ -102,6 +102,8 @@ transition: background 0.2s, transform 0.15s;
 color-scheme: dark;
 }
 
+.hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 @media (max-width: 600px) {
 .field-grid { grid-template-columns: 1fr; }
 .field-grid.triple { grid-template-columns: 1fr; }
@@ -119,6 +121,12 @@ color-scheme: dark;
 </div>
 
 <form id="leadForm">
+
+<!-- Honeypot field — hidden from real users, catches bots that auto-fill every input -->
+<div class="hp-field" aria-hidden="true">
+<label for="hp_website">Leave this field blank</label>
+<input type="text" id="hp_website" name="hp_website" tabindex="-1" autocomplete="off">
+</div>
 
 <!-- Section 1: Contact -->
 <div class="section">
@@ -523,6 +531,13 @@ banner.style.display = 'none';
 async function submitForm() {
 hideError();
 
+if (document.getElementById('hp_website').value.trim() !== '') {
+// Honeypot triggered — silently pretend success without submitting.
+document.getElementById('leadForm').style.display = 'none';
+document.getElementById('successMsg').style.display = 'block';
+return;
+}
+
 const name = document.getElementById('name').value.trim();
 const email = document.getElementById('email').value.trim();
 const phone = document.getElementById('phone').value.trim();
@@ -586,6 +601,7 @@ contract_file_base64 = '';
 
 const payload = {
 submission_id: submission_id,
+hp_website: document.getElementById('hp_website').value,
 name: name,
 email: email,
 phone: phone,
