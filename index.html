@@ -66,6 +66,8 @@ transition: border-color 0.2s;
 
 .conditional-field { display: none; }
 .conditional-field.show { display: flex; }
+.conditional-grid { display: none; }
+.conditional-grid.show { display: grid; }
 
 .consent-row { display: flex; flex-direction: row; align-items: flex-start; gap: 10px; margin-top: 16px; }
 .consent-row input[type="checkbox"] { margin-top: 3px; width: 16px; height: 16px; flex-shrink: 0; accent-color: #1B93A6; }
@@ -235,30 +237,32 @@ color-scheme: dark;
 <div class="field-grid" style="margin-top:16px;">
 <div class="field">
 <label>Loan Type Needed *</label>
-<select id="loan_type" required onchange="toggleNewConstruction(); updateDscrBridgeFields();">
+<select id="loan_type" required onchange="toggleNewConstruction(); updateDealFields();">
 <option value="">Select...</option>
 <option value="Fix & Flip">Fix and Flip</option>
-<option value="DSCR">DSCR (Rental)</option>
-<option value="Bridge">Bridge Loan</option>
+<option value="DSCR">DSCR</option>
+<option value="Bridge">Bridge</option>
 <option value="New Construction">New Construction</option>
 <option value="Not Sure">Not Sure</option>
 </select>
 </div>
 <div class="field">
 <label>Purchase or Refinance?</label>
-<select id="transaction_type" onchange="updateDscrBridgeFields();">
+<select id="transaction_type" onchange="updateDealFields();">
 <option value="">Select...</option>
 <option value="Purchase">Purchase</option>
 <option value="Refinance">Refinance</option>
 </select>
 </div>
 </div>
-<div class="field-grid triple" style="margin-top:16px;">
+
+<!-- Purchase-path fields: purchase price / rehab / ARV. Shown unless this is a non-Fix&Flip refinance. -->
+<div class="field-grid triple conditional-grid show" id="purchaseFields" style="margin-top:16px;">
 <div class="field">
-<label>Purchase Price (As-Is Value if Already Owned) *</label>
+<label id="purchasePriceLabel">Purchase Price *</label>
 <div class="money-input">
 <span class="money-symbol">$</span>
-<input type="text" id="purchase_price" placeholder="250,000" required oninput="formatMoney(this)">
+<input type="text" id="purchase_price" placeholder="250,000" oninput="formatMoney(this)">
 </div>
 </div>
 <div class="field">
@@ -277,15 +281,46 @@ color-scheme: dark;
 </div>
 </div>
 
-<!-- DSCR / Bridge only -->
-<div class="field-grid" id="dscrBridgeFields" style="margin-top:16px; display:none;">
-<div class="field" id="payoffField" style="display:none;">
-<label>Payoff Amount for Existing Liens</label>
+<!-- Refinance-path fields (hidden unless Refinance + not Fix & Flip) -->
+<div class="field-grid conditional-grid" id="refiFields1" style="margin-top:16px;">
+<div class="field">
+<label>Original Purchase Date</label>
+<input type="date" id="original_purchase_date">
+</div>
+<div class="field">
+<label>Original Purchase Price</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="original_purchase_price" placeholder="250,000" oninput="formatMoney(this)">
+</div>
+</div>
+</div>
+<div class="field-grid triple conditional-grid" id="refiFields2" style="margin-top:16px;">
+<div class="field">
+<label>Amount of Rehab Completed</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="rehab_completed" placeholder="50,000" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>Current As-Is Value</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="current_value" placeholder="400,000" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field">
+<label>Payoff Amount / Existing Liens</label>
 <div class="money-input">
 <span class="money-symbol">$</span>
 <input type="text" id="payoff_amount" placeholder="150,000" oninput="formatMoney(this)">
 </div>
 </div>
+</div>
+
+<!-- Taxes / Insurance — hidden only for Fix & Flip -->
+<div class="field-grid conditional-grid show" id="taxesInsuranceFields" style="margin-top:16px;">
 <div class="field">
 <label>Annual Property Taxes</label>
 <div class="money-input">
@@ -298,6 +333,32 @@ color-scheme: dark;
 <div class="money-input">
 <span class="money-symbol">$</span>
 <input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
+</div>
+</div>
+</div>
+
+<!-- Rent fields — shown only for DSCR / Bridge -->
+<div class="field-grid triple conditional-grid" id="rentFields" style="margin-top:16px;">
+<div class="field">
+<label>Is the Property Currently Rented? *</label>
+<select id="is_rented" onchange="updateRentFields();">
+<option value="">Select...</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+</div>
+<div class="field conditional-field" id="grossRentField">
+<label>Current Gross Rent *</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="gross_rent" placeholder="2,200" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field conditional-field" id="marketRentField">
+<label>Estimated Market Rent *</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="market_rent" placeholder="2,200" oninput="formatMoney(this)">
 </div>
 </div>
 </div>
@@ -335,8 +396,8 @@ color-scheme: dark;
 <div class="section-title">Your Profile</div>
 <div class="field-grid">
 <div class="field">
-<label>Investment Properties Completed (Last 3 Years)</label>
-<select id="experience">
+<label>Investment Properties Completed (Last 3 Years) *</label>
+<select id="experience" required>
 <option value="">Select...</option>
 <option value="0 — First deal">0 — First deal</option>
 <option value="1-2 deals">1-2 deals</option>
@@ -346,8 +407,8 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>Estimated Credit Score</label>
-<select id="credit_score">
+<label>Estimated Credit Score *</label>
+<select id="credit_score" required>
 <option value="">Select...</option>
 <option value="Below 640">Below 640</option>
 <option value="640-679">640-679</option>
@@ -380,8 +441,8 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>Do You Own Your Primary Residence?</label>
-<select id="owns_primary">
+<label>Do You Own Your Primary Residence? *</label>
+<select id="owns_primary" required>
 <option value="">Select...</option>
 <option value="Yes">Yes</option>
 <option value="No">No</option>
@@ -397,8 +458,8 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>Citizenship Status</label>
-<select id="citizenship_status">
+<label>Citizenship Status *</label>
+<select id="citizenship_status" required>
 <option value="">Select...</option>
 <option value="US Citizen">US Citizen</option>
 <option value="Foreign National">Foreign National</option>
@@ -464,7 +525,9 @@ input.value = parseInt(value).toLocaleString();
 }
 
 function getRawMoney(id) {
-const val = document.getElementById(id).value.replace(/[^0-9]/g, '');
+const el = document.getElementById(id);
+if (!el) return 0;
+const val = el.value.replace(/[^0-9]/g, '');
 return val ? parseInt(val) : 0;
 }
 
@@ -488,16 +551,47 @@ ncField.classList.remove('show');
 }
 }
 
-function updateDscrBridgeFields() {
+function updateDealFields() {
 const loanType = document.getElementById('loan_type').value;
 const txnType = document.getElementById('transaction_type').value;
+const isFixFlip = loanType === 'Fix & Flip';
 const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
-const showPayoff = isDscrBridge && txnType === 'Refinance';
-const wrap = document.getElementById('dscrBridgeFields');
-const payoff = document.getElementById('payoffField');
-wrap.style.display = isDscrBridge ? 'grid' : 'none';
-wrap.classList.toggle('triple', showPayoff);
-payoff.style.display = showPayoff ? 'flex' : 'none';
+const isRefi = txnType === 'Refinance' && !isFixFlip;
+
+const purchaseFields = document.getElementById('purchaseFields');
+const refiFields1 = document.getElementById('refiFields1');
+const refiFields2 = document.getElementById('refiFields2');
+const taxesInsuranceFields = document.getElementById('taxesInsuranceFields');
+const rentFields = document.getElementById('rentFields');
+const purchasePriceLabel = document.getElementById('purchasePriceLabel');
+
+purchaseFields.classList.toggle('show', !isRefi);
+refiFields1.classList.toggle('show', isRefi);
+refiFields2.classList.toggle('show', isRefi);
+purchasePriceLabel.textContent = isFixFlip ? 'Purchase Price *' : 'Purchase Price';
+
+taxesInsuranceFields.classList.toggle('show', !isFixFlip);
+
+rentFields.classList.toggle('show', isDscrBridge);
+document.getElementById('is_rented').required = isDscrBridge;
+if (!isDscrBridge) {
+document.getElementById('grossRentField').classList.remove('show');
+document.getElementById('marketRentField').classList.remove('show');
+document.getElementById('gross_rent').required = false;
+document.getElementById('market_rent').required = false;
+} else {
+updateRentFields();
+}
+}
+
+function updateRentFields() {
+const rented = document.getElementById('is_rented').value;
+const grossField = document.getElementById('grossRentField');
+const marketField = document.getElementById('marketRentField');
+grossField.classList.toggle('show', rented === 'Yes');
+marketField.classList.toggle('show', rented === 'No');
+document.getElementById('gross_rent').required = rented === 'Yes';
+document.getElementById('market_rent').required = rented === 'No';
 }
 
 function showFileName(input) {
@@ -541,14 +635,14 @@ return;
 const name = document.getElementById('name').value.trim();
 const email = document.getElementById('email').value.trim();
 const phone = document.getElementById('phone').value.trim();
+const loanType = document.getElementById('loan_type').value;
+const txnType = document.getElementById('transaction_type').value;
+const isFixFlip = loanType === 'Fix & Flip';
+const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
+const isRefi = txnType === 'Refinance' && !isFixFlip;
 
 if (!name || !email || !phone) {
 alert('Please fill in your name, email, and phone number.');
-return;
-}
-
-if (!document.getElementById('purchase_price').value) {
-alert('Please enter the purchase price.');
 return;
 }
 
@@ -564,6 +658,47 @@ return;
 
 if (!document.getElementById('zip_code').value.trim()) {
 alert('Please enter the property zip code.');
+return;
+}
+
+if (!isRefi && !document.getElementById('purchase_price').value) {
+alert('Please enter the purchase price.');
+return;
+}
+
+if (isDscrBridge) {
+const rented = document.getElementById('is_rented').value;
+if (!rented) {
+alert('Please let us know if the property is currently rented.');
+return;
+}
+if (rented === 'Yes' && !document.getElementById('gross_rent').value) {
+alert('Please enter the current gross rent.');
+return;
+}
+if (rented === 'No' && !document.getElementById('market_rent').value) {
+alert('Please enter the estimated market rent.');
+return;
+}
+}
+
+if (!document.getElementById('experience').value) {
+alert('Please select the number of investment properties completed in the last 3 years.');
+return;
+}
+
+if (!document.getElementById('credit_score').value) {
+alert('Please select your estimated credit score.');
+return;
+}
+
+if (!document.getElementById('owns_primary').value) {
+alert('Please let us know if you own your primary residence.');
+return;
+}
+
+if (!document.getElementById('citizenship_status').value) {
+alert('Please select your citizenship status.');
 return;
 }
 
@@ -609,14 +744,21 @@ property_address: document.getElementById('property_address').value,
 property_type: document.getElementById('property_type').value,
 state: document.getElementById('property_state').value,
 zip_code: document.getElementById('zip_code').value.trim(),
-loan_type: document.getElementById('loan_type').value,
-transaction_type: document.getElementById('transaction_type').value,
+loan_type: loanType,
+transaction_type: txnType,
 purchase_price: getRawMoney('purchase_price'),
 rehab_budget: getRawMoney('rehab_budget'),
 arv: getRawMoney('arv'),
+original_purchase_date: document.getElementById('original_purchase_date').value,
+original_purchase_price: getRawMoney('original_purchase_price'),
+rehab_completed: getRawMoney('rehab_completed'),
+current_value: getRawMoney('current_value'),
 payoff_amount: getRawMoney('payoff_amount'),
 annual_taxes: getRawMoney('annual_taxes'),
 annual_insurance: getRawMoney('annual_insurance'),
+is_rented: document.getElementById('is_rented').value,
+gross_rent: getRawMoney('gross_rent'),
+market_rent: getRawMoney('market_rent'),
 under_contract: document.getElementById('under_contract').value,
 close_date: document.getElementById('close_date').value,
 experience: document.getElementById('experience').value,
