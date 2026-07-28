@@ -236,12 +236,16 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>Zip Code *</label>
-<input type="text" id="zip_code" placeholder="12345" inputmode="numeric" maxlength="10" required>
+<label>City *</label>
+<input type="text" id="city" placeholder="Wichita" required>
 </div>
 </div>
 
-<div class="field-grid" style="margin-top:16px;">
+<div class="field-grid triple" style="margin-top:16px;">
+<div class="field">
+<label>Zip Code *</label>
+<input type="text" id="zip_code" placeholder="12345" inputmode="numeric" maxlength="10" required>
+</div>
 <div class="field">
 <label>Property Use *</label>
 <select id="property_use" required>
@@ -723,7 +727,7 @@ rehabBudgetLabel.textContent = 'Build Cost';
 landOwnedRow.classList.add('show');
 } else {
 purchasePriceLabel.textContent = isFixFlip ? 'Purchase Price *' : 'Purchase Price';
-rehabBudgetLabel.textContent = 'Rehab Budget';
+rehabBudgetLabel.textContent = isFixFlip ? 'Rehab Budget' : 'CapEx Budget';
 landOwnedRow.classList.remove('show');
 document.getElementById('land_already_owned').checked = false;
 document.getElementById('purchase_price').disabled = false;
@@ -889,6 +893,11 @@ alert('Please select the property state.');
 return;
 }
 
+if (!document.getElementById('city').value.trim()) {
+alert('Please enter the property city.');
+return;
+}
+
 if (!document.getElementById('zip_code').value.trim()) {
 alert('Please enter the property zip code.');
 return;
@@ -997,6 +1006,7 @@ phone: phone,
 property_address: document.getElementById('property_address').value,
 property_type: document.getElementById('property_type').value,
 state: document.getElementById('property_state').value,
+city: document.getElementById('city').value.trim(),
 zip_code: document.getElementById('zip_code').value.trim(),
 property_use: document.getElementById('property_use').value,
 flood_zone: document.getElementById('flood_zone').value,
