@@ -23,6 +23,7 @@ body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sa
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .field-grid.single { grid-template-columns: 1fr; }
 .field-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+.field-grid.quad { grid-template-columns: 1fr 1fr 1fr 1fr; }
 
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: 12px; font-weight: 500; color: #aebccb; line-height: 1.4; }
@@ -113,6 +114,7 @@ color-scheme: dark;
 @media (max-width: 600px) {
 .field-grid { grid-template-columns: 1fr; }
 .field-grid.triple { grid-template-columns: 1fr; }
+.field-grid.quad { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -162,20 +164,10 @@ color-scheme: dark;
 <input type="text" id="property_address" placeholder="123 Main St, City, State 12345" required>
 </div>
 </div>
-<div class="field-grid triple" style="margin-top:16px;">
+<div class="field-grid quad" style="margin-top:16px;">
 <div class="field">
-<label>Property Type *</label>
-<select id="property_type" required onchange="updateDealFields();">
-<option value="">Select...</option>
-<option value="Single Family">Single Family</option>
-<option value="Multi-Family (2-4 units)">Multi-Family (2-4 units)</option>
-<option value="Multi-Family (5+ units)">Multi-Family (5+ units)</option>
-<option value="Condo/Townhome">Condo/Townhome</option>
-<option value="Mixed-Use">Mixed-Use</option>
-<option value="Commercial">Commercial</option>
-<option value="Retail">Retail</option>
-<option value="Mobile Home / RV Park">Mobile Home / RV Park</option>
-</select>
+<label>City *</label>
+<input type="text" id="city" placeholder="Wichita" required>
 </div>
 <div class="field">
 <label>Property State *</label>
@@ -235,23 +227,8 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>City *</label>
-<input type="text" id="city" placeholder="Wichita" required>
-</div>
-</div>
-
-<div class="field-grid triple" style="margin-top:16px;">
-<div class="field">
 <label>Zip Code *</label>
 <input type="text" id="zip_code" placeholder="12345" inputmode="numeric" maxlength="10" required>
-</div>
-<div class="field">
-<label>Property Use *</label>
-<select id="property_use" required>
-<option value="">Select...</option>
-<option value="Investment Property">Investment Property</option>
-<option value="Owner Occupied Commercial">Owner Occupied Commercial</option>
-</select>
 </div>
 <div class="field">
 <label>Flood Zone?</label>
@@ -260,6 +237,50 @@ color-scheme: dark;
 <option value="No">No</option>
 <option value="Yes">Yes</option>
 <option value="Unsure">Unsure</option>
+</select>
+</div>
+</div>
+
+<div class="field-grid quad" style="margin-top:16px;">
+<div class="field">
+<label>Property Type *</label>
+<select id="property_type" required onchange="updateDealFields();">
+<option value="">Select...</option>
+<option value="Single Family">Single Family</option>
+<option value="Multi-Family (2-4 units)">Multi-Family (2-4 units)</option>
+<option value="Multi-Family (5+ units)">Multi-Family (5+ units)</option>
+<option value="Condo/Townhome">Condo/Townhome</option>
+<option value="Mixed-Use">Mixed-Use</option>
+<option value="Commercial">Commercial</option>
+<option value="Retail">Retail</option>
+<option value="Mobile Home / RV Park">Mobile Home / RV Park</option>
+</select>
+</div>
+<div class="field conditional-field" id="numberOfUnitsRow">
+<label>Number of Units</label>
+<input type="text" id="number_of_units" placeholder="4" inputmode="numeric">
+</div>
+<div class="field conditional-field" id="occupancyAtClosingField">
+<label>Occupancy at Closing</label>
+<select id="occupancy_at_closing">
+<option value="">Select...</option>
+<option value="Vacant">Vacant</option>
+<option value="Occupied">Occupied</option>
+</select>
+</div>
+<div class="field conditional-field" id="occupancyPctRow">
+<label>Current Occupancy %</label>
+<div class="percent-input">
+<input type="text" id="occupancy_pct" placeholder="92" oninput="formatPercent(this)">
+<span class="percent-symbol">%</span>
+</div>
+</div>
+<div class="field">
+<label>Property Use *</label>
+<select id="property_use" required>
+<option value="">Select...</option>
+<option value="Investment Property">Investment Property</option>
+<option value="Owner Occupied Commercial">Owner Occupied Commercial</option>
 </select>
 </div>
 </div>
@@ -275,15 +296,15 @@ color-scheme: dark;
 </div>
 </div>
 
-<!-- Number of Units — shown for any property type other than Single Family, unless the loan type is New Construction -->
-<div class="field-grid single conditional-field" id="numberOfUnitsRow" style="margin-top:16px;">
+<div class="field-grid triple" style="margin-top:16px;">
 <div class="field">
-<label>Number of Units</label>
-<input type="text" id="number_of_units" placeholder="4" inputmode="numeric">
+<label>Purchase or Refinance?</label>
+<select id="transaction_type" onchange="updateDealFields();">
+<option value="">Select...</option>
+<option value="Purchase">Purchase</option>
+<option value="Refinance" id="refinanceOption">Refinance</option>
+</select>
 </div>
-</div>
-
-<div class="field-grid" style="margin-top:16px;">
 <div class="field">
 <label>Loan Type Needed *</label>
 <select id="loan_type" required onchange="toggleNewConstruction(); updateDealFields();">
@@ -296,24 +317,6 @@ color-scheme: dark;
 </select>
 </div>
 <div class="field">
-<label>Purchase or Refinance?</label>
-<select id="transaction_type" onchange="updateDealFields();">
-<option value="">Select...</option>
-<option value="Purchase">Purchase</option>
-<option value="Refinance" id="refinanceOption">Refinance</option>
-</select>
-</div>
-</div>
-
-<div class="field-grid triple" style="margin-top:16px;">
-<div class="field">
-<label>Loan Amount Requested *</label>
-<div class="money-input">
-<span class="money-symbol">$</span>
-<input type="text" id="loan_amount_requested" placeholder="300,000" oninput="formatMoney(this)">
-</div>
-</div>
-<div class="field">
 <label>Exit Strategy</label>
 <select id="exit_strategy" onchange="updateDealFields();">
 <option value="">Select...</option>
@@ -322,29 +325,18 @@ color-scheme: dark;
 <option value="Other">Other / Not Sure</option>
 </select>
 </div>
-<div class="field conditional-field" id="occupancyAtClosingField">
-<label>Occupancy at Closing</label>
-<select id="occupancy_at_closing">
-<option value="">Select...</option>
-<option value="Vacant">Vacant</option>
-<option value="Occupied">Occupied</option>
-</select>
-</div>
 </div>
 
-<!-- Shown instead of Occupancy at Closing for income properties (5+ unit multifamily, commercial, retail, mobile home/RV park) — occupancy is a ratio, not a single unit's status. -->
-<div class="field-grid single conditional-field" id="occupancyPctRow" style="margin-top:16px;">
+<!-- Purchase Price / As-Is Value and Rehab Budget / CapEx / Rehab Completed are merged single fields whose
+     label switches based on Purchase vs Refinance (and New Construction), so only one value is ever collected. -->
+<div class="field-grid triple" style="margin-top:16px;">
 <div class="field">
-<label>Current Occupancy %</label>
-<div class="percent-input">
-<input type="text" id="occupancy_pct" placeholder="92" oninput="formatPercent(this)">
-<span class="percent-symbol">%</span>
+<label>Loan Amount Requested *</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="loan_amount_requested" placeholder="300,000" oninput="formatMoney(this)">
 </div>
 </div>
-</div>
-
-<!-- Purchase-path fields: purchase price / rehab / ARV. Shown unless this is a non-Fix&Flip refinance. -->
-<div class="field-grid triple conditional-grid show" id="purchaseFields" style="margin-top:16px;">
 <div class="field">
 <label id="purchasePriceLabel">Purchase Price *</label>
 <div class="money-input">
@@ -359,11 +351,25 @@ color-scheme: dark;
 <input type="text" id="rehab_budget" placeholder="50,000" oninput="formatMoney(this)">
 </div>
 </div>
-<div class="field">
+<div class="field conditional-field" id="arvRow">
 <label>After Repair Value (ARV)</label>
 <div class="money-input">
 <span class="money-symbol">$</span>
 <input type="text" id="arv" placeholder="400,000" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field conditional-field" id="annualTaxesRow">
+<label>Annual Property Taxes</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="annual_taxes" placeholder="4,500" oninput="formatMoney(this)">
+</div>
+</div>
+<div class="field conditional-field" id="annualInsuranceRow">
+<label>Annual Insurance</label>
+<div class="money-input">
+<span class="money-symbol">$</span>
+<input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
 </div>
 </div>
 </div>
@@ -378,8 +384,8 @@ N/A — I already own the land
 </div>
 </div>
 
-<!-- Refinance-path fields (hidden unless Refinance + not Fix & Flip + not New Construction) -->
-<div class="field-grid conditional-grid" id="refiFields1" style="margin-top:16px;">
+<!-- Refinance-only fields: original purchase details and any existing liens to pay off -->
+<div class="field-grid triple conditional-grid" id="refiExtraFields" style="margin-top:16px;">
 <div class="field">
 <label>Original Purchase Date</label>
 <input type="date" id="original_purchase_date">
@@ -391,45 +397,11 @@ N/A — I already own the land
 <input type="text" id="original_purchase_price" placeholder="250,000" oninput="formatMoney(this)">
 </div>
 </div>
-</div>
-<div class="field-grid triple conditional-grid" id="refiFields2" style="margin-top:16px;">
-<div class="field">
-<label>Amount of Rehab Completed</label>
-<div class="money-input">
-<span class="money-symbol">$</span>
-<input type="text" id="rehab_completed" placeholder="50,000" oninput="formatMoney(this)">
-</div>
-</div>
-<div class="field">
-<label>Current As-Is Value</label>
-<div class="money-input">
-<span class="money-symbol">$</span>
-<input type="text" id="current_value" placeholder="400,000" oninput="formatMoney(this)">
-</div>
-</div>
 <div class="field">
 <label>Payoff Amount / Existing Liens</label>
 <div class="money-input">
 <span class="money-symbol">$</span>
 <input type="text" id="payoff_amount" placeholder="150,000" oninput="formatMoney(this)">
-</div>
-</div>
-</div>
-
-<!-- Taxes / Insurance — hidden only for Fix & Flip -->
-<div class="field-grid conditional-grid show" id="taxesInsuranceFields" style="margin-top:16px;">
-<div class="field">
-<label>Annual Property Taxes</label>
-<div class="money-input">
-<span class="money-symbol">$</span>
-<input type="text" id="annual_taxes" placeholder="4,500" oninput="formatMoney(this)">
-</div>
-</div>
-<div class="field">
-<label>Annual Insurance</label>
-<div class="money-input">
-<span class="money-symbol">$</span>
-<input type="text" id="annual_insurance" placeholder="2,200" oninput="formatMoney(this)">
 </div>
 </div>
 </div>
@@ -460,7 +432,7 @@ N/A — I already own the land
 </div>
 </div>
 
-<!-- Commercial loan type only: income underwriting fields -->
+<!-- Commercial property type only: income underwriting fields -->
 <div class="field-grid conditional-grid" id="commercialFields" style="margin-top:16px;">
 <div class="field">
 <label>Net Operating Income (Annual)</label>
@@ -490,7 +462,7 @@ N/A — I already own the land
 </select>
 </div>
 <div class="field">
-<label>Required Close Date</label>
+<label>Requested Closing Date (Not Required)</label>
 <input type="date" id="close_date" min="">
 </div>
 </div>
@@ -723,23 +695,30 @@ const isFixFlip = loanType === 'Fix & Flip';
 const isDscrBridge = (loanType === 'DSCR' || loanType === 'Bridge');
 const isRefi = txnType === 'Refinance' && !isFixFlip && !isNewConstruction;
 
-const purchaseFields = document.getElementById('purchaseFields');
-const refiFields1 = document.getElementById('refiFields1');
-const refiFields2 = document.getElementById('refiFields2');
-const taxesInsuranceFields = document.getElementById('taxesInsuranceFields');
+const refiExtraFields = document.getElementById('refiExtraFields');
+const arvRow = document.getElementById('arvRow');
+const annualTaxesRow = document.getElementById('annualTaxesRow');
+const annualInsuranceRow = document.getElementById('annualInsuranceRow');
 const rentFields = document.getElementById('rentFields');
 const purchasePriceLabel = document.getElementById('purchasePriceLabel');
 const rehabBudgetLabel = document.getElementById('rehabBudgetLabel');
 const landOwnedRow = document.getElementById('landOwnedRow');
 
-purchaseFields.classList.toggle('show', !isRefi);
-refiFields1.classList.toggle('show', isRefi);
-refiFields2.classList.toggle('show', isRefi);
+// Purchase Price and Rehab Budget are single merged fields — the label switches to the
+// refinance equivalent (As-Is Value / Rehab Completed) rather than using separate fields.
+refiExtraFields.classList.toggle('show', isRefi);
+arvRow.classList.toggle('show', !isRefi);
 
 if (isNewConstruction) {
 purchasePriceLabel.textContent = 'Land Purchase Amount';
 rehabBudgetLabel.textContent = 'Build Cost';
 landOwnedRow.classList.add('show');
+} else if (isRefi) {
+purchasePriceLabel.textContent = 'Current As-Is Value';
+rehabBudgetLabel.textContent = 'Amount of Rehab Completed';
+landOwnedRow.classList.remove('show');
+document.getElementById('land_already_owned').checked = false;
+document.getElementById('purchase_price').disabled = false;
 } else {
 purchasePriceLabel.textContent = isFixFlip ? 'Purchase Price *' : 'Purchase Price';
 rehabBudgetLabel.textContent = isFixFlip ? 'Rehab Budget' : 'CapEx Budget';
@@ -748,7 +727,16 @@ document.getElementById('land_already_owned').checked = false;
 document.getElementById('purchase_price').disabled = false;
 }
 
-taxesInsuranceFields.classList.toggle('show', !isFixFlip && !isNewConstruction);
+const showTaxesInsurance = !isFixFlip && !isNewConstruction;
+annualTaxesRow.classList.toggle('show', showTaxesInsurance);
+annualInsuranceRow.classList.toggle('show', showTaxesInsurance);
+if (!showTaxesInsurance) {
+document.getElementById('annual_taxes').value = '';
+document.getElementById('annual_insurance').value = '';
+}
+if (isRefi) {
+document.getElementById('arv').value = '';
+}
 
 rentFields.classList.toggle('show', isDscrBridge);
 document.getElementById('is_rented').required = isDscrBridge;
@@ -1040,8 +1028,6 @@ rehab_budget: getRawMoney('rehab_budget'),
 arv: getRawMoney('arv'),
 original_purchase_date: document.getElementById('original_purchase_date').value,
 original_purchase_price: getRawMoney('original_purchase_price'),
-rehab_completed: getRawMoney('rehab_completed'),
-current_value: getRawMoney('current_value'),
 payoff_amount: getRawMoney('payoff_amount'),
 annual_taxes: getRawMoney('annual_taxes'),
 annual_insurance: getRawMoney('annual_insurance'),
