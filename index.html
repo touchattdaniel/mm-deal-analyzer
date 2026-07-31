@@ -802,7 +802,15 @@ select.value = currentValue;
 }
 }
 
-function toggleLandOwned() {
+function getSourceValue(){
+       const params = new URLSearchParams(window.location.search);
+       const utmSource = params.get('utm_source');
+       const utmCampaign = params.get('utm_campaign');
+       if (utmSource) { return utmCampaign ? (utmSource + ' / ' + utmCampaign) : utmSource; }
+       return 'Deal Analyzer Direct';
+}
+     
+     function toggleLandOwned() {
 const checked = document.getElementById('land_already_owned').checked;
 const priceField = document.getElementById('purchase_price');
 priceField.disabled = checked;
@@ -1050,7 +1058,8 @@ message: document.getElementById('message').value,
 consent: true,
 consent_timestamp: new Date().toISOString(),
 contract_file_name: contract_file_name,
-contract_file_base64: contract_file_base64
+contract_file_base64: contract_file_base64,
+       source: getSourceValue()
 };
 
 try {
